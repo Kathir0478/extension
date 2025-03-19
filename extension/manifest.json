@@ -1,21 +1,28 @@
 {
     "manifest_version": 3,
-    "name": "YouTube Filter Extension",
+    "name": "EchoStorage",
     "version": "1.0",
     "description": "Filters YouTube videos based on user-defined prompts.",
     "permissions": [
         "storage",
         "activeTab",
-        "scripting"
+        "scripting",
+        "tabs"
     ],
     "host_permissions": [
         "https://www.youtube.com/*",
-        "https://youtube-fetch.onrender.com/*"
+        "https://fin-blaze.onrender.com/*"
     ],
     "background": {
         "service_worker": "background.js"
     },
     "action": {
-        "default_popup": "popup.html"
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icon16.jpg"
+        }
+    },
+    "icons": {
+        "16": "icon16.jpg"
     }
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,6 +13,54 @@
     <input type="text" id="prompt" placeholder="Enter your prompt">
     <input type="number" id="timeout" placeholder="Timeout (seconds)" min="1">
     <button id="filterBtn">Filter Videos</button>
+    <script src="popup.js"></script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Filter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<div class="section gif-container">
+    <img id="loadingGif" src="avatar.gif" alt="Loading..." class="hidden">
+</div>
+
+<body>
+    <h1>EchoStorage</h1>
+    <div class="section">
+        <label for="prompt">Content Prompt</label>
+        <textarea id="prompt"
+            placeholder="Share whats on your mind with a good content quality and enjoy the focused playlist"></textarea>
+    </div>
+    <div class="section">
+        <label for="timeout">Timeout</label>
+        <input type="number" id="timeout" placeholder="Timeout (Minutes)" min="1">
+    </div>
+
+    <div class="button-container">
+        <button id="useOnceBtn">Use Once</button>
+        <button id="saveForLaterBtn">Save for Later</button>
+    </div>
+
+    <div class="section">
+        <label for="savedPrompts">Saved Prompts</label>
+        <select id="savedPrompts">
+            <option value="">Select a saved prompt</option>
+        </select>
+        <div class="saved-prompt-buttons">
+            <button id="useSavedBtn">Use Selected</button>
+            <button id="deleteSavedBtn">Delete Selected</button>
+        </div>
+    </div>
+
+
     <script src="popup.js"></script>
 </body>
 

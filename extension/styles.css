@@ -1,12 +1,135 @@
+/* General Styling */
 body {
-    font-family: Arial, sans-serif;
-    width: 200px;
-    padding: 10px;
+    font-family: 'Arial', sans-serif;
+    background: #121212;
+    color: #ffffff;
+    text-align: center;
+    width: 350px;
+    padding: 20px;
+    border-radius: 8px;
 }
 
-input,
-button {
+/* Header */
+h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #ff4757;
+}
+
+/* Sections */
+.section {
+    margin: 15px 0;
+    text-align: left;
+}
+
+/* Labels */
+label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Textarea Styling */
+textarea {
     width: 100%;
-    margin: 5px 0;
-    padding: 8px;
+    height: 80px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    background: #1e1e1e;
+    color: #ffffff;
+    resize: none;
+}
+
+textarea::placeholder {
+    color: #888;
+}
+
+/* Input Styling */
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    background: #1e1e1e;
+    color: #ffffff;
+}
+
+input::placeholder {
+    color: #888;
+}
+
+/* Buttons */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+/* Saved Prompts Buttons in a Single Row */
+.saved-prompt-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+button {
+    flex: 1;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    transition: 0.3s;
+}
+
+#useOnceBtn {
+    background: #ff4757;
+}
+
+#saveForLaterBtn {
+    background: #ffa502;
+}
+
+#useSavedBtn {
+    background: #1e90ff;
+}
+
+#deleteSavedBtn {
+    background: #ff6b81;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Dropdown */
+#savedPrompts {
+    cursor: pointer;
+}
+
+/* GIF Container */
+.gif-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.gif-container img {
+    width: 80px;
+    /* Adjust size as needed */
+    height: auto;
+    border-radius: 5px;
+    /* Soft rounded edges */
 }

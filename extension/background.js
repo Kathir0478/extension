@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "fetchVideos") {
-        fetch("https://youtube-fetch.onrender.com/process", {
+        fetch("https://fin-blaze.onrender.com/process", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ prompt: request.prompt })
