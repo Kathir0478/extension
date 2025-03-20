@@ -29,7 +29,10 @@
 </head>
 
 <div class="section gif-container">
-    <img id="loadingGif" src="avatar.gif" alt="Loading..." class="hidden">
+    <img id="loadingGif" src="assets/avatar.gif" alt="Loading..." class="hidden">
+</div>
+<div id="loader" class="loader-overlay">
+    <div class="loader"></div>
 </div>
 
 <body>
@@ -40,8 +43,14 @@
             placeholder="Share whats on your mind with a good content quality and enjoy the focused playlist"></textarea>
     </div>
     <div class="section">
-        <label for="timeout">Timeout</label>
-        <input type="number" id="timeout" placeholder="Timeout (Minutes)" min="1">
+        <label for="timeoutUnit">Timeout</label>
+        <div class="duration-container">
+            <input type="number" id="timeout" placeholder="Enter Timeout" min="1">
+            <select id="timeoutUnit">
+                <option value="minutes">Minutes</option>
+                <option value="hours">Hours</option>
+            </select>
+        </div>
     </div>
 
     <div class="button-container">

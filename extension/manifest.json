@@ -17,12 +17,6 @@
         "service_worker": "background.js"
     },
     "action": {
-        "default_popup": "popup.html",
-        "default_icon": {
-            "16": "icon16.jpg"
-        }
-    },
-    "icons": {
-        "16": "icon16.jpg"
+        "default_popup": "popup.html"
     }
 }

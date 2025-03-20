@@ -1,52 +1,23 @@
-// document.getElementById("filterBtn").addEventListener("click", () => {
-//     const prompt = document.getElementById("prompt").value;
-//     const timeout = parseInt(document.getElementById("timeout").value, 10) * 60000; // Convert to milliseconds
-
-//     if (!prompt || isNaN(timeout) || timeout <= 0) {
-//         alert("Please enter a valid prompt and timeout value.");
-//         return;
-//     }
-
-//     chrome.runtime.sendMessage({ action: "fetchVideos", prompt }, (response) => {
-//         if (response.success) {
-//             chrome.windows.create({
-//                 url: response.playlist,
-//                 incognito: true
-//             }, (newWindow) => {
-//                 setTimeout(() => {
-//                     chrome.windows.remove(newWindow.id, () => {
-//                         if (chrome.runtime.lastError) {
-//                             console.error("Error closing window:", chrome.runtime.lastError);
-//                         } else {
-//                             console.log(`Closed incognito window ID: ${newWindow.id}`);
-//                         }
-//                     });
-//                 }, timeout);
-//                 console.log(timeout)
-//             });
-//         } else {
-//             alert("Error fetching videos: " + response.error);
-//         }
-//     });
-// });
-
-
-function fetchVideos(prompt, timeout) {
+function fetchVideos(prompt, timeout, unit) {
+    const loader = document.getElementById("loader");
+    loader.style.display = "flex"
+    let ntimeout = unit === "hours" ? timeout * 3600000 : timeout * 60000;
     chrome.runtime.sendMessage({ action: "fetchVideos", prompt }, (response) => {
+        loader.style.display = "none"
         if (response.success) {
             chrome.windows.create({
                 url: response.playlist,
                 incognito: true
             }, (newWindow) => {
                 setTimeout(() => {
-                    chrome.windows.remove(newWindow.id, () => {
-                        if (chrome.runtime.lastError) {
-                            console.error("Error closing window:", chrome.runtime.lastError);
-                        } else {
-                            console.log(`Closed incognito window ID: ${newWindow.id}`);
-                        }
+                    chrome.scripting.executeScript({
+                        target: { tabId: newWindow.tabs[0].id },
+                        files: ["notify.js"]
                     });
-                }, timeout * 60000);
+                }, ntimeout - 5000);
+                setTimeout(() => {
+                    chrome.windows.remove(newWindow.id);
+                }, ntimeout);
             });
         } else {
             alert("Error fetching videos: " + response.error);
@@ -57,13 +28,13 @@ function fetchVideos(prompt, timeout) {
 document.getElementById("useOnceBtn").addEventListener("click", () => {
     const prompt = document.getElementById("prompt").value;
     const timeout = parseInt(document.getElementById("timeout").value, 10);
-
+    const unit = document.getElementById("timeoutUnit").value;
     if (!prompt || isNaN(timeout) || timeout <= 0) {
         alert("Please enter a valid prompt and timeout value.");
         return;
     }
 
-    fetchVideos(prompt, timeout);
+    fetchVideos(prompt, timeout, unit);
 });
 
 document.getElementById("saveForLaterBtn").addEventListener("click", () => {
@@ -93,7 +64,6 @@ function loadSavedPrompts() {
         const savedPrompts = data.savedPrompts;
         const dropdown = document.getElementById("savedPrompts");
 
-
         dropdown.innerHTML = '<option value="">Select a saved prompt</option>';
         savedPrompts.forEach((prompt) => {
             const option = document.createElement("option");
@@ -108,13 +78,14 @@ function loadSavedPrompts() {
 document.getElementById("useSavedBtn").addEventListener("click", () => {
     const selectedPrompt = document.getElementById("savedPrompts").value;
     const timeout = parseInt(document.getElementById("timeout").value, 10);
+    const unit = document.getElementById("timeoutUnit").value;
 
     if (!selectedPrompt || isNaN(timeout) || timeout <= 0) {
         alert("Please select a valid saved prompt and enter a timeout.");
         return;
     }
 
-    fetchVideos(selectedPrompt, timeout);
+    fetchVideos(selectedPrompt, timeout, unit);
 });
 
 
